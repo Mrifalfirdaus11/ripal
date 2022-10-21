@@ -1,0 +1,181 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <style> 
+        h1{ 
+            text-align: center; 
+            margin-top: 50px; 
+        } 
+        .container{ 
+            background-color: white; 
+            width: 350px; 
+            height: 150px; 
+            margin-left: 500px; 
+            margin-top: 200px; 
+            border-radius: 15px; 
+        } 
+ 
+        .container p{ 
+            margin-left: 10px; 
+           font-size: 20px; 
+        } 
+        .container label{ 
+            font-size: 20px; 
+            margin-left: 10px; 
+        } 
+        #tombol1{ 
+            border: none; 
+            color: white; 
+            background-color:dodgerblue; 
+            margin-left: 10px; 
+            width: 80px; 
+            height: 25px; 
+            border-radius: 15px; 
+        } 
+        #tombol2{ 
+            border: none; 
+            color: white; 
+            background-color: dodgerblue; 
+            width: 80px; 
+            height: 25px; 
+            border-radius: 15px; 
+        } 
+        canvas{ 
+            border: 1px solid black; 
+            background-image: url(asset/Screenshot_236.png); 
+            background-size: cover; 
+            background-position: center; 
+            position: absolute; 
+            margin-top: -150px; 
+            margin-left: 280px; 
+        } 
+ 
+ 
+        .footer{ 
+            font-size: 20px; 
+            margin-top: 280px; 
+            height: 25px; 
+            text-align: center; 
+        } 
+ 
+ 
+        body{ 
+            background-image: url(asset/6038af62c2e8f.jpg); 
+            background-size: cover; 
+            margin: 0; 
+            padding: 0; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div id="play" oninput="nama()"> 
+         <h1 style="display: none;">hallo games</h1> 
+    </div> 
+    <div class="container" id="nama"> 
+        <p>PLAYER:</p> 
+ 
+        <label>Choose color: <input type="color" id="warna"></label> 
+        <br>  
+        <button onclick="logout()" id="tombol1" style="margin-top: 20px;">Logout</button> 
+        <button onclick="startGame()" id="tombol2" style="margin-left: 100px;">Start</button> 
+    </div> 
+ 
+    <p id="player" style="position: absolute;"></p> 
+    <p id="game"></p> 
+ 
+    <div class="footer" id="footer2"> 
+        <p style="color: black;" id="gambar">Devloper by oktavia</p> 
+    </div> 
+ 
+    <div id="btn" style="display: none;" > 
+        <button onclick="tombol()" id="ulang" style="display: none;">Try Again</button> 
+        <br> 
+        <button onclick="tombol2()" id="kembali" style="display: none;">Exit</button>    
+    </div> 
+    
+     
+   <script> 
+   
+    var myGamePiece; 
+    var myObstacles = []; 
+    var myScore; 
+ 
+    function startGame() { 
+        document.getElementById("gambar").style.position="absolute" 
+        document.getElementById("gambar").style.marginTop="340px" 
+        document.getElementById("gambar").style.marginLeft="500px" 
+ 
+        document.getElementById("nama").style.display="none" 
+        document.getElementById("play").style.display="block" 
+        document.getElementById("ulang").style.display="block" 
+        document.getElementById("kembali").style.display="block" 
+        document.getElementById("ulang").style.marginTop="250px" 
+        document.getElementById("kembali").style.marginLeft="650px" 
+        document.getElementById("ulang").style.marginLeft="500px" 
+        document.getElementById("kembali").style.marginTop="-43px" 
+     
+        document.getElementById("ulang").style.width="100px" 
+        document.getElementById("kembali").style.width="100px" 
+     
+        document.getElementById("ulang").style.height="25px" 
+        document.getElementById("kembali").style.height="25px" 
+     
+        document.getElementById("ulang").style.backgroundColor="blue" 
+        document.getElementById("kembali").style.backgroundColor="blue"
+
+document.ge
+
+; 
+        if (myGameArea.frameNo == 1 || everyinterval(150)) { 
+            x = myGameArea.canvas.width; 
+            minHeight = 20; 
+            maxHeight = 200; 
+            height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight); 
+            minGap = 50; 
+            maxGap = 200; 
+            gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap); 
+            myObstacles.push(new component(10, height, "green", x, 0)); 
+            myObstacles.push(new component(10, x - height - gap, "green", x, height + gap)); 
+        } 
+        for (i = 0; i < myObstacles.length; i += 1) { 
+            myObstacles[i].speedX = -1; 
+            myObstacles[i].newPos(); 
+            myObstacles[i].update(); 
+        } 
+        myScore.text="SCORE: " + myGameArea.frameNo; 
+        myScore.update(); 
+        myGamePiece.newPos();     
+        myGamePiece.update(); 
+ 
+       
+    } 
+ 
+    function everyinterval(n) { 
+        if ((myGameArea.frameNo / n) % 1 == 0) {return true;} 
+        return false; 
+    } 
+ 
+function clearmove() { 
+    myGamePiece.speedX = 0;  
+    myGamePiece.speedY = 0;  
+} 
+ 
+function tombol(){ 
+    myGameArea.stop(); 
+    myGameArea.clear(); 
+    startGame(); 
+} 
+ 
+function tombol2(){ 
+    location.reload(); 
+} 
+ 
+     
+    </script> 
+ 
+</body> 
+</html>
